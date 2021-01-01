@@ -1,5 +1,66 @@
-{% extends "base_layout.html" %} {% block title %}panels-wells{% endblock %} 
+{% extends "base_layout.html" %} 
+{% block title %}panels-wells{% endblock %} 
 {% block content %}
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#writeModal">
+  Add MY QA
+</button>
+
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#resultModal">
+  Show MY QA
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="writeModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+          <form role="form" action="http://127.0.0.1:5000/form_write" method='POST'>
+              이름을 입력하세요~
+              <input type = 'text' name = 'name' placeholder="Enter name">
+              <button type="submit" class="btn btn-primary">Enter</button>
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          </form>
+      </div>
+<!--       <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-primary">Enter</button>
+      </div> -->
+    </div>
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="resultModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+          <form role="form" action="http://127.0.0.1:5000/form_result" method='POST'>
+              이름을 입력하세요~
+              <input type = 'text' name = 'name' placeholder="Enter name">
+              <button type="submit" class="btn btn-primary">Enter</button>
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          </form>
+      </div>
+<!--       <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-primary">Enter</button>
+      </div> -->
+    </div>
+  </div>
+</div>
 
 <div class="row">
     <div class="col-lg-12">
@@ -7,22 +68,23 @@
     </div>
     <!-- /.col-lg-12 -->
 </div>
-{% for i in range(2): %} 
+{% for i in range(numi): %} 
 <!-- /.row -->
 <div class="row">
-    {% for i in range(3): %}
+    {% for d in range(2): %}
     <div class="col-lg-4">
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                Default Panel
+        <a href="http://127.0.0.1:5000/form_result/{{rows[2*i+d]['이름']}}">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    {{ rows[2*i+d]['이름'] }}
+                </div>
+                <div class="panel-body">
+                    <p>{{ rows[2*i+d]['질문1'] }}</p>
+                </div>
+                <div class="panel-footer">
+                </div>
             </div>
-            <div class="panel-body">
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum tincidunt est vitae ultrices accumsan. Aliquam ornare lacus adipiscing, posuere lectus et, fringilla augue.</p>
-            </div>
-            <div class="panel-footer">
-                Panel Footer
-            </div>
-        </div>
+        </a>
     </div>
     <!-- /.col-lg-4 -->
     {% endfor %}
@@ -30,19 +92,20 @@
 <!-- /.row -->
 {% endfor %} 
 <div class="row">
-    {% for i in range(2): %}
+    {% for j in range(numj): %}
     <div class="col-lg-4">
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                Default Panel
+        <a href="http://127.0.0.1:5000/form_result/{{rows[2*numi]['이름']}}">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    {{ rows[2*numi]['이름'] }}
+                </div>
+                <div class="panel-body">
+                    <p>{{ rows[2*numi]['질문1'] }}</p>
+                </div>
+                <div class="panel-footer">
+                </div>
             </div>
-            <div class="panel-body">
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum tincidunt est vitae ultrices accumsan. Aliquam ornare lacus adipiscing, posuere lectus et, fringilla augue.</p>
-            </div>
-            <div class="panel-footer">
-                Panel Footer
-            </div>
-        </div>
+        </a>
     </div>
     <!-- /.col-lg-4 -->
     {% endfor %} 

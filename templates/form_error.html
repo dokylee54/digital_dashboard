@@ -1,0 +1,30 @@
+{% extends "base_layout.html" %} {% block title %}Welcome{% endblock %} 
+
+{% block head %}
+    {{ super() }}
+    <link rel="stylesheet" href="{{ url_for('serveStaticResource', resource='css/timeline.css') }}">
+    <link rel="stylesheet" href="{{ url_for('serveStaticResource', resource='css/morris.css') }}">
+{% endblock %} 
+
+<!-- {%with messages = get_flashed_messages()%}
+    {%if messages %}
+        <script type="text/javascript">
+            alert("{{messages[-1]}}");
+        </script>
+    {%endif%}
+{%endwith%} -->
+
+{% block content %}
+<h1>
+    <strong>뭔가 에러가 났습니다..!<br>메인으로 돌아가서 다시 진행해주세요</strong>
+</h1>
+<button type="button" class="btn btn-primary" onclick="location.href='form_main'">
+    Return to Main
+</button>
+{% endblock %}
+{% block js %}
+    {{ super() }}
+    <script src="{{ url_for('serveStaticResource', resource='js/raphael-min.js')}}"></script>
+    <script src="{{ url_for('serveStaticResource', resource='js/morris.min.js')}}"></script>
+    <script src="{{ url_for('serveStaticResource', resource='js/morris-data.js')}}"></script>
+{% endblock %}
